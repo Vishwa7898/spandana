@@ -1,8 +1,10 @@
 package com.example.spandana
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.spandana.activities.ProfileActivity
 import com.example.spandana.databinding.ActivityMainBinding
 import com.example.spandana.fragments.CategoriesFragment
 import com.example.spandana.fragments.HomeFragment
@@ -27,7 +29,11 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_today -> replaceFragment(HomeFragment())
                 R.id.nav_categories -> replaceFragment(CategoriesFragment())
                 R.id.nav_trends -> replaceFragment(TrendsFragment())
-                R.id.nav_profile -> replaceFragment(ProfileFragment())
+                R.id.nav_profile -> {
+                    // Navigate to ProfileActivity instead of fragment
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+                }
             }
             true
         }

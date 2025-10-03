@@ -47,6 +47,11 @@
             android:name=".activities.OTPVerificationActivity"
             android:exported="false" />
 
+        <!-- Profile Activity -->
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:exported="false" />
+
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
