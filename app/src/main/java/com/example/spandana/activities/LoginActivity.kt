@@ -9,6 +9,10 @@ import com.example.spandana.MainActivity
 import com.example.spandana.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ActionCodeSettings
+import android.util.Log
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.content.Context
 
 class LoginActivity : AppCompatActivity() {
 
@@ -26,18 +30,18 @@ class LoginActivity : AppCompatActivity() {
         sharedPref = getSharedPreferences("auth_prefs", MODE_PRIVATE)
 
         setupClickListeners()
-        checkEmailLink(intent)
-    }
-
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-        checkEmailLink(intent)
+        
+        // Pre-fill email if coming from signup
+        val emailFromSignup = intent.getStringExtra("EMAIL")
+        if (!emailFromSignup.isNullOrEmpty()) {
+            binding.emailEditText.setText(emailFromSignup)
+        }
     }
 
     private fun setupClickListeners() {
-        // Login Button Click - OTP එක්ක login කිරීම
+        // Login Button Click - Email/Password login
         binding.loginButton.setOnClickListener {
-            performLoginWithOTP()
+            performLoginWithEmailPassword()
         }
 
         // Back Button Click
@@ -54,20 +58,16 @@ class LoginActivity : AppCompatActivity() {
 
         // Forgot Password Click
         binding.forgotPasswordText.setOnClickListener {
-            val email = binding.emailEditText.text.toString()
-            if (email.isEmpty()) {
-                Toast.makeText(this, "Please enter your email first", Toast.LENGTH_SHORT).show()
-            } else {
-                sendOTP(email)
-            }
+            Toast.makeText(this, "Forgot password feature coming soon!", Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun performLoginWithOTP() {
+    private fun performLoginWithEmailPassword() {
         val email = binding.emailEditText.text.toString().trim()
+        val password = binding.passwordEditText.text.toString().trim()
 
-        if (email.isEmpty()) {
-            Toast.makeText(this, "Please enter your email", Toast.LENGTH_SHORT).show()
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -77,37 +77,75 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        // OTP send කිරීම
-        sendOTP(email)
+        // Password length check
+        if (password.length < 6) {
+            Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Perform login with email and password
+        loginWithEmailPassword(email, password)
     }
 
-    private fun sendOTP(email: String) {
-        // Firebase Email Link settings
-        val actionCodeSettings = ActionCodeSettings.newBuilder()
-            .setUrl("https://spandana.page.link/otp")
-            .setHandleCodeInApp(true)
-            .setAndroidPackageName(
-                "com.example.spandana",
-                true, // Install app if not available
-                "1"   // Minimum version
-            )
-            .build()
+    private fun loginWithEmailPassword(email: String, password: String) {
+        Log.d("LoginActivity", "Logging in with email/password for: $email")
+        
+        // Show loading state
+        binding.loginButton.isEnabled = false
+        binding.loginButton.text = "Logging in..."
 
-        auth.sendSignInLinkToEmail(email, actionCodeSettings)
+        // Sign in with email and password
+        auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
+                // Restore button state
+                binding.loginButton.isEnabled = true
+                binding.loginButton.text = "LOGIN"
+                
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Login link sent to your email", Toast.LENGTH_SHORT).show()
-
-                    // Email එක save කිරීම (verification සඳහා)
-                    saveEmailForVerification(email)
-
-                    // OTP verification screen එකට යාම
-                    val intent = Intent(this, OTPVerificationActivity::class.java)
-                    intent.putExtra("EMAIL", email)
+                    Log.d("LoginActivity", "Login successful for: $email")
+                    
+                    // Save login state
+                    saveLoginState(email)
+                    
+                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                    
+                    // Navigate to main app
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
-                    Toast.makeText(this, "Failed to send login link: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                    val exception = task.exception
+                    Log.e("LoginActivity", "Login failed", exception)
+                    Log.e("LoginActivity", "Exception message: ${exception?.message}")
+                    
+                    val errorMessage = when {
+                        exception?.message?.contains("INVALID_EMAIL") == true -> "Invalid email address"
+                        exception?.message?.contains("USER_DISABLED") == true -> "This account has been disabled"
+                        exception?.message?.contains("USER_NOT_FOUND") == true -> "No account found with this email"
+                        exception?.message?.contains("WRONG_PASSWORD") == true -> "Incorrect password"
+                        exception?.message?.contains("TOO_MANY_ATTEMPTS") == true -> "Too many attempts. Please try again later"
+                        exception?.message?.contains("NETWORK_ERROR") == true -> "Network error. Please check your connection"
+                        exception?.message?.contains("INVALID_CREDENTIAL") == true -> "Invalid email or password"
+                        else -> "Login failed. Error: ${exception?.message ?: "Unknown error"}"
+                    }
+                    
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
                 }
+            }
+            .addOnFailureListener { exception ->
+                // Restore button state on failure
+                binding.loginButton.isEnabled = true
+                binding.loginButton.text = "LOGIN"
+                
+                Log.e("LoginActivity", "Firebase request failed", exception)
+                
+                val errorMessage = when {
+                    exception?.message?.contains("INVALID_CREDENTIAL") == true -> "Invalid email or password"
+                    exception?.message?.contains("USER_NOT_FOUND") == true -> "No account found with this email"
+                    else -> "Login failed. Please try again."
+                }
+                
+                Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
             }
     }
 
@@ -161,6 +199,26 @@ class LoginActivity : AppCompatActivity() {
 
     private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val network = connectivityManager.activeNetwork ?: return false
+        val networkCapabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
+        
+        return when {
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+            networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
+            else -> false
+        }
+    }
+
+    private fun saveLoginState(email: String) {
+        val editor = sharedPref.edit()
+        editor.putBoolean("is_logged_in", true)
+        editor.putString("user_email", email)
+        editor.apply()
     }
 
     override fun onBackPressed() {
