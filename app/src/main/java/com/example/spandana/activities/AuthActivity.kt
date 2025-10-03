@@ -19,17 +19,19 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun setupClickListeners() {
-        // Login Button Click
+        // Login Button Click - LoginActivity එකට යාම
         binding.loginButton.setOnClickListener {
-            navigateToMainApp()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
-        // Sign Up Button Click
+        // Sign Up Button Click - SignUpActivity එකට යාම
         binding.signUpButton.setOnClickListener {
-            navigateToMainApp()
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
 
-        // Skip for now Text Click
+        // Skip for now Text Click - MainApp එකට යාම
         binding.skipText.setOnClickListener {
             navigateToMainApp()
         }

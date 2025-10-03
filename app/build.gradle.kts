@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id("com.google.gms.google-services")
+
 }
 
 android {
@@ -37,6 +39,16 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 
+    packagingOptions {
+        resources {
+            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
+            merges.add("META-INF/LICENSE.md")
+        }
+        // ඔබේ error එකට අදාළව, මේ ලයින් එක විශේෂයෙන්ම වැදගත්
+        exclude("META-INF/NOTICE.md")
+        exclude("META-INF/LICENSE.md") // මේකත් එකතු කරගන්න
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -53,6 +65,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("com.google.code.gson:gson:2.10.1")
+//    implementation("com.emailjs:emailjs:1.0.3")
+    implementation("com.sun.mail:android-mail:1.6.7")
+    implementation("com.sun.mail:android-activation:1.6.7")
+    implementation(platform("com.google.firebase:firebase-bom:34.3.0"))
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-analytics")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

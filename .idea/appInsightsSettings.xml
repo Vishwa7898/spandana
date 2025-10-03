@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.spandana" />
+                  <option name="mobileSdkAppId" value="1:875856183923:android:2c35a0338854d2366ce006" />
+                  <option name="projectId" value="spandana-health-tracker" />
+                  <option name="projectNumber" value="875856183923" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
