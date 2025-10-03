@@ -218,6 +218,8 @@ class LoginActivity : AppCompatActivity() {
         val editor = sharedPref.edit()
         editor.putBoolean("is_logged_in", true)
         editor.putString("user_email", email)
+        // Clear guest mode when user logs in
+        editor.putBoolean("is_guest_mode", false)
         editor.apply()
     }
 

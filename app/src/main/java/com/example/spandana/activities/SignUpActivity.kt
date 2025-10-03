@@ -1,6 +1,7 @@
 package com.example.spandana.activities
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -17,6 +18,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignupBinding
     private lateinit var auth: FirebaseAuth
+    private lateinit var sharedPref: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +27,9 @@ class SignUpActivity : AppCompatActivity() {
 
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
+        
+        // Initialize SharedPreferences
+        sharedPref = getSharedPreferences("auth_prefs", MODE_PRIVATE)
         
         // Test Firebase connection
         Log.d("SignUpActivity", "Firebase Auth initialized: ${auth.app.name}")
@@ -116,35 +121,44 @@ class SignUpActivity : AppCompatActivity() {
 
                         user.updateProfile(profileUpdates)
                             .addOnCompleteListener { profileTask ->
-                                if (profileTask.isSuccessful) {
-                                    Log.d("SignUpActivity", "Profile updated successfully")
-                                    Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
-                                    
-                                    // Navigate to login page
-                                    val intent = Intent(this, LoginActivity::class.java)
-                                    intent.putExtra("EMAIL", email)
-                                    startActivity(intent)
-                                    finish()
-                                } else {
-                                    Log.e("SignUpActivity", "Failed to update profile", profileTask.exception)
-                                    Toast.makeText(this, "Account created but profile update failed", Toast.LENGTH_SHORT).show()
-                                    
-                                    // Still navigate to login
-                                    val intent = Intent(this, LoginActivity::class.java)
-                                    intent.putExtra("EMAIL", email)
-                                    startActivity(intent)
-                                    finish()
-                                }
+                        if (profileTask.isSuccessful) {
+                            Log.d("SignUpActivity", "Profile updated successfully")
+                            Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
+
+                            // Save login state and clear guest mode
+                            saveLoginState(email)
+
+                            // Navigate to login page
+                            val intent = Intent(this, LoginActivity::class.java)
+                            intent.putExtra("EMAIL", email)
+                            startActivity(intent)
+                            finish()
+                        } else {
+                            Log.e("SignUpActivity", "Failed to update profile", profileTask.exception)
+                            Toast.makeText(this, "Account created but profile update failed", Toast.LENGTH_SHORT).show()
+
+                            // Save login state and clear guest mode
+                            saveLoginState(email)
+
+                            // Still navigate to login
+                            val intent = Intent(this, LoginActivity::class.java)
+                            intent.putExtra("EMAIL", email)
+                            startActivity(intent)
+                            finish()
+                        }
                             }
                     } else {
                         Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
+
+                        // Save login state and clear guest mode
+                        saveLoginState(email)
                         
                         // Navigate to login page
                         val intent = Intent(this, LoginActivity::class.java)
                         intent.putExtra("EMAIL", email)
-        startActivity(intent)
-        finish()
-    }
+                        startActivity(intent)
+                        finish()
+                    }
                 } else {
                     val exception = task.exception
                     Log.e("SignUpActivity", "Failed to create account", exception)
@@ -196,6 +210,15 @@ class SignUpActivity : AppCompatActivity() {
             // If we can't check network, assume it's available and let Firebase handle the error
             true
         }
+    }
+
+    private fun saveLoginState(email: String) {
+        val editor = sharedPref.edit()
+        editor.putBoolean("is_logged_in", true)
+        editor.putString("user_email", email)
+        // Clear guest mode when user signs up
+        editor.putBoolean("is_guest_mode", false)
+        editor.apply()
     }
 
 
