@@ -216,7 +216,7 @@ class ProfileActivity : AppCompatActivity() {
         // Sign out from Firebase
         auth.signOut()
         
-        // Clear shared preferences
+        // Clear shared preferences including guest mode
         sharedPref.edit().clear().apply()
         
         Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show()
