@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/auth_background"
+    android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Dark Overlay -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000" />
+
+        <!-- Back Button -->
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_arrow_back"
+            android:layout_margin="24dp"
+            app:tint="@color/white" />
+
+        <!-- Main Content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="32dp"
+            android:layout_centerInParent="true">
+
+            <!-- Title Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="40dp">
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_mindfulness"
+                    android:layout_marginBottom="16dp"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mindfulness"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Practice mindfulness and meditation to improve your mental well-being"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:alpha="0.8"
+                    android:gravity="center"
+                    android:layout_marginBottom="40dp" />
+
+            </LinearLayout>
+
+            <!-- Mindfulness Activities -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Meditation Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/mindfulness_card_background"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_meditation"
+                        android:layout_marginEnd="16dp"
+                        app:tint="#5856D6" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Meditation"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Guided meditation sessions"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_gray" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/meditationButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Start"
+                        android:textSize="14sp"
+                        app:cornerRadius="20dp"
+                        android:backgroundTint="#5856D6"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <!-- Breathing Exercise Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/mindfulness_card_background"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_breathing"
+                        android:layout_marginEnd="16dp"
+                        app:tint="#FF2D55" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Breathing Exercise"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Calm your mind with breathing"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_gray" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/breathingButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Start"
+                        android:textSize="14sp"
+                        app:cornerRadius="20dp"
+                        android:backgroundTint="#FF2D55"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <!-- Gratitude Journal Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/mindfulness_card_background"
+                    android:padding="20dp"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_gratitude"
+                        android:layout_marginEnd="16dp"
+                        app:tint="#FF9500" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gratitude Journal"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Write what you're grateful for"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_gray" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/gratitudeButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Start"
+                        android:textSize="14sp"
+                        app:cornerRadius="20dp"
+                        android:backgroundTint="#FF9500"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+                <!-- Mindful Walking Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@drawable/mindfulness_card_background"
+                    android:padding="20dp"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:src="@drawable/ic_walking"
+                        android:layout_marginEnd="16dp"
+                        app:tint="#007AFF" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mindful Walking"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Walking meditation practice"
+                            android:textSize="14sp"
+                            android:textColor="@color/text_gray" />
+
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/walkingButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Start"
+                        android:textSize="14sp"
+                        app:cornerRadius="20dp"
+                        android:backgroundTint="#007AFF"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Relaxation Music Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="32dp">
+
+                <!-- Section Title -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Relaxation Music"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- Music Player Card -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/mindfulness_card_background"
+                    android:padding="20dp">
+
+                    <!-- Music Info -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="16dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_music"
+                            android:layout_marginEnd="16dp"
+                            app:tint="#5856D6" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nature Sounds"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:layout_marginBottom="4dp" />
+
+                            <TextView
+                                android:id="@+id/musicStatusText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ready to play"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_gray" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Music Controls -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/playMusicButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="Play"
+                            android:textSize="16sp"
+                            android:layout_marginEnd="8dp"
+                            app:cornerRadius="24dp"
+                            android:backgroundTint="#5856D6"
+                            android:textColor="@color/white" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/stopMusicButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
+                            android:text="Stop"
+                            android:textSize="16sp"
+                            android:layout_marginStart="8dp"
+                            app:cornerRadius="24dp"
+                            android:backgroundTint="#FF3B30"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

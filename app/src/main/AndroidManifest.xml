@@ -52,6 +52,11 @@
             android:name=".activities.ProfileActivity"
             android:exported="false" />
 
+        <!-- Mindfulness Activity -->
+        <activity
+            android:name=".activities.MindfulnessActivity"
+            android:exported="false" />
+
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"

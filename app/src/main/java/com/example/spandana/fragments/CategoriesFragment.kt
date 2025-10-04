@@ -1,5 +1,6 @@
 package com.example.spandana.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spandana.R
+import com.example.spandana.activities.MindfulnessActivity
 import com.example.spandana.adapters.CategoriesAdapter
 import com.example.spandana.databinding.FragmentCategoriesBinding
 import com.example.spandana.models.Category
@@ -65,15 +67,24 @@ class CategoriesFragment : Fragment() {
 
     private fun onCategoryClicked(category: Category) {
         // Category click කල විට කරන actions
-        // උදා: නව fragment එකකට navigate කිරීම
         when(category.name) {
+            "Mindfulness" -> {
+                // Navigate to MindfulnessActivity
+                val intent = Intent(requireContext(), MindfulnessActivity::class.java)
+                startActivity(intent)
+            }
             "Habits" -> {
                 // Habits fragment එකට navigate කිරීම
+                android.widget.Toast.makeText(requireContext(), "Habits feature coming soon!", android.widget.Toast.LENGTH_SHORT).show()
             }
             "Drink Water" -> {
                 // Water tracking fragment එකට navigate කිරීම
+                android.widget.Toast.makeText(requireContext(), "Water tracking feature coming soon!", android.widget.Toast.LENGTH_SHORT).show()
             }
-            // ... අනෙක් categories සඳහා
+            else -> {
+                // Other categories
+                android.widget.Toast.makeText(requireContext(), "${category.name} feature coming soon!", android.widget.Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

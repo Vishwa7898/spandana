@@ -1,0 +1,11 @@
+# This is a placeholder for relaxation music
+# In a real app, you would place actual audio files here
+# Supported formats: MP3, WAV, OGG, M4A
+# 
+# Example files you could add:
+# - nature_sounds.mp3
+# - ocean_waves.wav
+# - forest_birds.ogg
+# - rain_sounds.m4a
+#
+# For now, the app will use system sounds as placeholder
