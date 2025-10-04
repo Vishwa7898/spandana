@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_gray"
+    android:background="@color/surface"
     android:padding="16dp">
 
     <LinearLayout
@@ -18,7 +18,7 @@
             android:text="Mood Journal"
             android:textSize="28sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/text_primary"
             android:layout_marginBottom="8dp" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:text="Today, 12:30 PM"
             android:textSize="16sp"
-            android:textColor="@color/text_gray"
+            android:textColor="@color/text_secondary"
             android:layout_marginBottom="24dp" />
 
         <!-- Mood Selection Grid -->
@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:text="Happy"
                         android:textSize="12sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
@@ -103,7 +103,7 @@
                         android:layout_height="wrap_content"
                         android:text="Content"
                         android:textSize="12sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
@@ -139,7 +139,7 @@
                         android:layout_height="wrap_content"
                         android:text="Neutral"
                         android:textSize="12sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
@@ -185,7 +185,7 @@
                         android:layout_height="wrap_content"
                         android:text="Sad"
                         android:textSize="12sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
@@ -221,7 +221,7 @@
                         android:layout_height="wrap_content"
                         android:text="Angry"
                         android:textSize="12sp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/text_primary" />
 
                 </LinearLayout>
 
@@ -246,14 +246,14 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:cornerRadius="12dp"
-            android:backgroundTint="@color/primary_color"
+            android:backgroundTint="@color/accent_green"
             android:layout_marginBottom="32dp" />
 
         <!-- Divider -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/progress_track"
+            android:background="@color/text_tertiary"
             android:layout_marginBottom="16dp" />
 
         <!-- Past Entries Header -->
@@ -263,7 +263,7 @@
             android:text="Past Entries"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/black"
+            android:textColor="@color/text_primary"
             android:layout_marginBottom="16dp" />
 
         <!-- Past Entries RecyclerView -->

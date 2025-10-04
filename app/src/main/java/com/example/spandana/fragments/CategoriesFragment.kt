@@ -5,17 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spandana.R
-import com.example.spandana.adapters.CategoriesAdapter
 import com.example.spandana.databinding.FragmentCategoriesBinding
-import com.example.spandana.models.Category
+import com.example.spandana.utils.ThemeManager
 
 class CategoriesFragment : Fragment() {
 
     private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
-    private lateinit var categoriesAdapter: CategoriesAdapter
+    private lateinit var themeManager: ThemeManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,51 +27,69 @@ class CategoriesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecyclerView()
-        loadCategories()
+        themeManager = ThemeManager.getInstance(requireContext())
+        setupClickListeners()
     }
 
-    private fun setupRecyclerView() {
-        categoriesAdapter = CategoriesAdapter { category ->
-            // Category එක click කල විට කරන actions
-            onCategoryClicked(category)
+    private fun setupClickListeners() {
+        // Theme toggle
+        binding.toolbar.setNavigationOnClickListener {
+            themeManager.toggleTheme()
         }
 
-        binding.categoriesRecyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = categoriesAdapter
+        // Category cards click listeners
+        binding.cardExercise.setOnClickListener {
+            onCategoryClicked("Exercise")
+        }
+
+        binding.cardSleep.setOnClickListener {
+            onCategoryClicked("Sleep")
+        }
+
+        binding.cardNutrition.setOnClickListener {
+            onCategoryClicked("Nutrition")
+        }
+
+        binding.cardMindfulness.setOnClickListener {
+            onCategoryClicked("Mindfulness")
+        }
+
+        binding.cardHealth.setOnClickListener {
+            onCategoryClicked("Health")
+        }
+
+        binding.cardMood.setOnClickListener {
+            onCategoryClicked("Mood")
         }
     }
 
-    private fun loadCategories() {
-        val categories = listOf(
-            Category("Habits", R.drawable.ic_habits, "#007AFF"),
-            Category("Body Measurements", R.drawable.ic_body_measurements, "#5856D6"),
-            Category("Cycle Tracking", R.drawable.ic_cycle_tracking, "#FF2D55"),
-            Category("Hearing", R.drawable.ic_hearing, "#AF52DE"),
-            Category("Heart", R.drawable.ic_heart, "#FF3B30"),
-            Category("Mindfulness", R.drawable.ic_mindfulness, "#5856D6"),
-            Category("Mobility", R.drawable.ic_mobility, "#FF9500"),
-            Category("Respiratory", R.drawable.ic_respiratory, "#FF2D55"),
-            Category("Sleep", R.drawable.ic_sleep, "#007AFF"),
-            Category("Symptoms", R.drawable.ic_symptoms, "#FF9500"),
-            Category("Vitals", R.drawable.ic_vitals, "#FF3B30"),
-            Category("Drink Water", R.drawable.ic_water, "#FF2D55")
-        )
-        categoriesAdapter.submitList(categories)
-    }
-
-    private fun onCategoryClicked(category: Category) {
+    private fun onCategoryClicked(categoryName: String) {
         // Category click කල විට කරන actions
-        // උදා: නව fragment එකකට navigate කිරීම
-        when(category.name) {
-            "Habits" -> {
-                // Habits fragment එකට navigate කිරීම
+        when(categoryName) {
+            "Exercise" -> {
+                // Exercise/Habits fragment එකට navigate කිරීම
+                // For now, just show a toast or navigate to home
             }
-            "Drink Water" -> {
-                // Water tracking fragment එකට navigate කිරීම
+            "Sleep" -> {
+                // Sleep tracking fragment එකට navigate කිරීම
             }
-            // ... අනෙක් categories සඳහා
+            "Nutrition" -> {
+                // Nutrition/Water tracking fragment එකට navigate කිරීම
+            }
+            "Mindfulness" -> {
+                // Mindfulness fragment එකට navigate කිරීම
+            }
+            "Health" -> {
+                // Health tracking fragment එකට navigate කිරීම
+            }
+            "Mood" -> {
+                // Mood journal fragment එකට navigate කිරීම
+                val moodFragment = MoodJournalFragment()
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, moodFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
     }
 

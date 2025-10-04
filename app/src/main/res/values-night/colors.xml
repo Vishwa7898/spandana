@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Dark mode colors automatically applied -->
+    <color name="background">@color/dark_background</color>
+    <color name="surface">@color/dark_surface</color>
+    <color name="card_background">@color/dark_card_background</color>
+    <color name="text_primary">@color/dark_text_primary</color>
+    <color name="text_secondary">@color/dark_text_secondary</color>
+    <color name="text_tertiary">@color/dark_text_tertiary</color>
+    
+    <!-- Legacy Colors (for existing layouts) -->
+    <color name="white">@color/dark_text_primary</color>
+    <color name="black">@color/dark_text_primary</color>
+    <color name="background_gray">@color/dark_surface</color>
+    <color name="text_gray">@color/dark_text_secondary</color>
+    <color name="primary_color">@color/accent_green</color>
+    <color name="progress_track">@color/progress_background_dark</color>
+</resources>

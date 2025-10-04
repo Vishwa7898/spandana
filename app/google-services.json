@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "875856183923",
+    "project_id": "spandana-health-tracker",
+    "storage_bucket": "spandana-health-tracker.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875856183923:android:2c35a0338854d2366ce006",
+        "android_client_info": {
+          "package_name": "com.example.spandana"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8gHIhrc_imfLyjpseLBi_s3v0iOY4I8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

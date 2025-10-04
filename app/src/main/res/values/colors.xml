@@ -1,31 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-
-    <!-- App Specific Colors -->
-    <color name="primary_color">#007AFF</color>
-    <color name="primary_dark">#0056CC</color>
-    <color name="background_gray">#F2F2F7</color>
-    <color name="card_background">#FFFFFF</color>
-    <color name="text_primary">#000000</color>
-    <color name="text_secondary">#8E8E93</color>
-    <color name="text_gray">#6D6D6D</color>
-    <color name="progress_track">#E5E5EA</color>
-    <color name="bottom_nav_color">#8E8E93</color>
-
-    <!-- Launcher Background -->
-    <color name="ic_launcher_background">#007AFF</color>
-
+    <!-- Light Mode Colors (60-30-10 principle) -->
+    <!-- 60% - Primary Background -->
+    <color name="light_background">#FFFFFF</color>
+    <color name="light_surface">#F8F9FA</color>
+    
+    <!-- 30% - Secondary/Accent Areas -->
+    <color name="light_card_background">#FFFFFF</color>
+    <color name="light_secondary_background">#F1F3F5</color>
+    
+    <!-- 10% - Accent Color (Brand Green) -->
+    <color name="accent_green">#00FF94</color>
+    <color name="accent_green_dark">#00CC75</color>
+    <color name="accent_green_light">#80FFD4</color>
+    
+    <!-- Text Colors - Light Mode -->
+    <color name="light_text_primary">#1A1A1A</color>
+    <color name="light_text_secondary">#6B7280</color>
+    <color name="light_text_tertiary">#9CA3AF</color>
+    
+    <!-- Dark Mode Colors (60-30-10 principle) -->
+    <!-- 60% - Primary Background -->
+    <color name="dark_background">#0A0A0A</color>
+    <color name="dark_surface">#1A1A1A</color>
+    
+    <!-- 30% - Secondary/Accent Areas -->
+    <color name="dark_card_background">#1F1F1F</color>
+    <color name="dark_secondary_background">#2A2A2A</color>
+    
+    <!-- Text Colors - Dark Mode -->
+    <color name="dark_text_primary">#FFFFFF</color>
+    <color name="dark_text_secondary">#B0B0B0</color>
+    <color name="dark_text_tertiary">#808080</color>
+    
+    <!-- Status Colors -->
+    <color name="success_green">#00FF94</color>
+    <color name="warning_orange">#FF9500</color>
+    <color name="error_red">#FF3B30</color>
+    <color name="info_blue">#007AFF</color>
+    
+    <!-- Progress Colors -->
+    <color name="progress_70">#00FF94</color>
+    <color name="progress_background_light">#E5E7EB</color>
+    <color name="progress_background_dark">#374151</color>
+    
+    <!-- Bottom Navigation -->
+    <color name="nav_selected">#00FF94</color>
+    <color name="nav_unselected_light">#9CA3AF</color>
+    <color name="nav_unselected_dark">#6B7280</color>
+    
+    <!-- Category Colors -->
+    <color name="category_blue">#007AFF</color>
+    <color name="category_purple">#5856D6</color>
+    <color name="category_pink">#FF2D55</color>
+    <color name="category_orange">#FF9500</color>
+    
+    <!-- Transparent overlays -->
+    <color name="overlay_dark">#80000000</color>
+    <color name="overlay_light">#40000000</color>
+    
+    <!-- Legacy Colors (for existing layouts) -->
+    <color name="white">@color/light_background</color>
+    <color name="black">@color/light_text_primary</color>
+    <color name="background_gray">@color/light_surface</color>
+    <color name="text_gray">@color/light_text_secondary</color>
+    <color name="primary_color">@color/accent_green</color>
+    <color name="progress_track">@color/progress_background_light</color>
+    
     <!-- Mood Colors -->
-    <color name="mood_happy">#FFD60A</color>
-    <color name="mood_content">#32D74B</color>
-    <color name="mood_neutral">#FF9F0A</color>
-    <color name="mood_sad">#0A84FF</color>
-    <color name="mood_angry">#FF375F</color>
+    <color name="mood_happy">#FFD700</color>
+    <color name="mood_content">#32CD32</color>
+    <color name="mood_neutral">#FFA500</color>
+    <color name="mood_sad">#4169E1</color>
+    <color name="mood_angry">#FF4500</color>
+    
+    <!-- Theme-aware colors -->
+    <color name="background">@color/light_background</color>
+    <color name="surface">@color/light_surface</color>
+    <color name="card_background">@color/light_card_background</color>
+    <color name="text_primary">@color/light_text_primary</color>
+    <color name="text_secondary">@color/light_text_secondary</color>
+    <color name="text_tertiary">@color/light_text_tertiary</color>
 </resources>
