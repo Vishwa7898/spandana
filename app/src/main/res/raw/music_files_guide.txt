@@ -1,0 +1,27 @@
+# Custom Meditation Music Files
+
+Place these MP3 files in: app/src/main/res/raw/
+
+## Required Files:
+1. bell_meditation.mp3 - Bell meditation sounds
+2. ocean_waves.mp3 - Ocean waves sound
+3. nature_sounds.mp3 - Nature sounds (birds, rain, etc.)
+4. ambient_music.mp3 - Ambient meditation music
+
+## File Requirements:
+- Format: MP3, WAV, or OGG
+- Size: Under 5MB each
+- Length: 3-10 minutes (will loop)
+- Quality: 128kbps or higher
+
+## Download Sources:
+- Freesound.org (free)
+- Pixabay Music (free)
+- YouTube Audio Library (free)
+- Zapsplat (free)
+
+## Recommended Sounds:
+- Bell meditation chimes
+- Ocean wave sounds
+- Forest nature sounds
+- Ambient meditation music

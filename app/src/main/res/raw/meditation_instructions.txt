@@ -1,0 +1,21 @@
+# Sample Meditation Music Files
+
+To add custom music to your meditation app:
+
+1. Download MP3 files from royalty-free sources:
+   - Freesound.org
+   - Pixabay Music
+   - YouTube Audio Library
+   - Zapsplat
+
+2. Place files in: app/src/main/res/raw/
+   - meditation_1.mp3
+   - meditation_2.mp3
+   - meditation_3.mp3
+   - custom_sound.mp3
+
+3. Supported formats: MP3, WAV, OGG
+
+4. File size limit: Keep under 5MB for better performance
+
+5. Recommended length: 3-10 minutes for meditation loops

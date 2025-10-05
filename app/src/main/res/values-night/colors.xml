@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Dark mode colors automatically applied -->
+    <!-- Dark Mode Colors -->
+    
+    <!-- Theme-aware colors for dark mode -->
     <color name="background">@color/dark_background</color>
     <color name="surface">@color/dark_surface</color>
     <color name="card_background">@color/dark_card_background</color>
@@ -8,11 +10,11 @@
     <color name="text_secondary">@color/dark_text_secondary</color>
     <color name="text_tertiary">@color/dark_text_tertiary</color>
     
-    <!-- Legacy Colors (for existing layouts) -->
-    <color name="white">@color/dark_text_primary</color>
-    <color name="black">@color/dark_text_primary</color>
-    <color name="background_gray">@color/dark_surface</color>
-    <color name="text_gray">@color/dark_text_secondary</color>
-    <color name="primary_color">@color/accent_green</color>
-    <color name="progress_track">@color/progress_background_dark</color>
+    <!-- Meditation specific colors for dark mode -->
+    <color name="meditation_tips_bg">#2A3A2A</color>
+    <color name="meditation_timer_text">#FFFFFF</color>
+    <color name="meditation_status_text">#00FF94</color>
+    <color name="meditation_button_bg">#2A2A2A</color>
+    <color name="meditation_button_text">#FFFFFF</color>
+    <color name="meditation_nav_bg">#1A1A1A</color>
 </resources>

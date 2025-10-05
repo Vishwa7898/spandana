@@ -1,11 +1,13 @@
 package com.example.spandana.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.spandana.R
+import com.example.spandana.activities.MeditationActivity
 import com.example.spandana.databinding.FragmentCategoriesBinding
 import com.example.spandana.utils.ThemeManager
 
@@ -77,7 +79,9 @@ class CategoriesFragment : Fragment() {
                 // Nutrition/Water tracking fragment එකට navigate කිරීම
             }
             "Mindfulness" -> {
-                // Mindfulness fragment එකට navigate කිරීම
+                // Navigate to Meditation Activity
+                val intent = Intent(requireContext(), MeditationActivity::class.java)
+                startActivity(intent)
             }
             "Health" -> {
                 // Health tracking fragment එකට navigate කිරීම
