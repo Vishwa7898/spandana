@@ -19,8 +19,7 @@
             android:background="@android:color/transparent"
             app:title="Welcome back! 👋"
             app:titleTextColor="@color/white"
-            app:navigationIcon="@drawable/ic_menu"
-            app:navigationIconTint="@color/white" />
+            app:menu="@menu/toolbar_menu" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

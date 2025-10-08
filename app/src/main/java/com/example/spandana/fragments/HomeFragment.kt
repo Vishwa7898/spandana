@@ -18,6 +18,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.appbar.MaterialToolbar
 import com.example.spandana.adapters.RecentActivityAdapter
 import com.example.spandana.models.RecentActivity
+import com.example.spandana.utils.ThemeManager
 
 class HomeFragment : Fragment() {
 
@@ -78,13 +79,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupToolbar(view: View) {
-        // For fragments, we don't set the toolbar as support action bar
-        // The toolbar is handled by the parent activity
+        // Set up toolbar menu
+        toolbar.inflateMenu(R.menu.toolbar_menu)
         
-        // Navigation icon click listener
-        toolbar.setNavigationOnClickListener {
-            // Handle menu icon click (open navigation drawer, etc.)
-            showMessage("Menu clicked")
+        // Dark mode toggle click listener
+        toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_dark_mode -> {
+                    toggleDarkMode()
+                    true
+                }
+                else -> false
+            }
         }
     }
 
@@ -173,6 +179,18 @@ class HomeFragment : Fragment() {
 
     private fun showMessage(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun toggleDarkMode() {
+        // Use ThemeManager to toggle theme
+        val themeManager = ThemeManager.getInstance(requireContext())
+        themeManager.toggleTheme()
+        
+        // Show feedback to user
+        val message = if (themeManager.isDarkMode()) "Dark mode enabled" else "Light mode enabled"
+        showMessage(message)
+        
+        // The theme change will be applied immediately by ThemeManager
     }
 }
 
