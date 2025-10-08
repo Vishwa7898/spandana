@@ -52,6 +52,13 @@
             android:layout_marginBottom="40dp"
             android:padding="20dp">
 
+            <!-- Meditation Emoji -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🧘"
+                android:textSize="100sp" />
+
             <!-- Timer Display -->
             <TextView
                 android:id="@+id/tvTimer"
@@ -73,12 +80,7 @@
                 android:textSize="16sp"
                 android:layout_marginBottom="8dp" />
 
-            <!-- Meditation Emoji -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="🧘"
-                android:textSize="16sp" />
+
 
         </LinearLayout>
 

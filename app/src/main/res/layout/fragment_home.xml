@@ -18,8 +18,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/background"
             app:title="Welcome back! 👋"
-            app:titleTextColor="@color/text_primary" />
-<!--            app:menu="@menu/toolbar_menu" />-->
+            app:titleTextColor="@color/text_primary"
+            app:menu="@menu/toolbar_menu" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

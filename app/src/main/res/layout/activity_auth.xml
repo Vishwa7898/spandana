@@ -32,6 +32,7 @@
                 android:layout_width="501dp"
                 android:layout_height="444dp"
                 android:layout_marginBottom="20dp"
+                android:contentDescription="logo"
                 android:scaleType="fitCenter"
                 android:src="@drawable/spandana_logo" />
 

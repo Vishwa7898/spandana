@@ -23,6 +23,7 @@ import com.example.spandana.databinding.FragmentHomeBinding
 import com.example.spandana.utils.HabitManager
 import com.example.spandana.utils.HydrationManager
 import com.example.spandana.utils.MoodManager
+import com.example.spandana.utils.ThemeManager
 import com.google.android.material.card.MaterialCardView
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,6 +33,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var recentActivityAdapter: RecentActivityAdapter
+    private lateinit var themeManager: ThemeManager
     private val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     private val today = sdf.format(Date())
 
@@ -54,6 +56,16 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
+        // Theme toggle using menu item instead of navigation icon
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_dark_mode -> {
+                    themeManager.toggleTheme()
+                    true
+                }
+                else -> false
+            }
+        }
         // Quick Actions click listeners
         binding.quickActionMood.setOnClickListener {
             val moodFragment = MoodJournalFragment()
