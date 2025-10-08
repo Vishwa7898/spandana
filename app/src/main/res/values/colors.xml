@@ -19,12 +19,21 @@
     <color name="accent_green_dark">#00CC75</color>
     <color name="accent_green_light">#80FFD4</color>
 
-    <!-- Category Colors -->
-    <color name="category_teal">#00FF94</color>
-    <color name="category_blue">#00FF94</color>
-    <color name="category_purple">#00FF94</color>
-    <color name="category_pink">#00FF94</color>
-    <color name="category_orange">#00FF94</color>
+    <!-- Category Colors - Original -->
+    <color name="category_teal">#009688</color>
+    <color name="category_blue">#2196F3</color>
+    <color name="category_purple">#9C27B0</color>
+    <color name="category_pink">#E91E63</color>
+    <color name="category_orange">#FF9800</color>
+    <color name="category_green">#4CAF50</color>
+
+    <!-- Category Colors - Green Shades (for Categories screen) -->
+    <color name="category_green_1">#4CAF50</color>  <!-- Material Green -->
+    <color name="category_green_2">#45A649</color>  <!-- Slightly darker -->
+    <color name="category_green_3">#3E9C42</color>  <!-- Even darker -->
+    <color name="category_green_4">#37933B</color>  <!-- Deeper green -->
+    <color name="category_green_5">#308934</color>  <!-- Much darker -->
+    <color name="category_green_6">#297F2D</color>  <!-- Darkest green -->
 
     <!-- Status Colors -->
     <color name="success_green">#00FF94</color>

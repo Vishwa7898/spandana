@@ -67,8 +67,8 @@ class CategoriesFragment : Fragment() {
             onCategoryClicked("Water")
         }
 
-        binding.cardGoals.setOnClickListener {
-            onCategoryClicked("Goals")
+        binding.cardMeditation.setOnClickListener {
+            onCategoryClicked("Meditation")
         }
     }
 
@@ -95,8 +95,9 @@ class CategoriesFragment : Fragment() {
                 val intent = Intent(requireContext(), com.example.spandana.activities.HydrationActivity::class.java)
                 startActivity(intent)
             }
-            "Goals" -> {
-                // Goals tracking implementation
+            "Meditation" -> {
+                val intent = Intent(requireContext(), MeditationActivity::class.java)
+                startActivity(intent)
             }
         }
     }

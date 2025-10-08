@@ -3,49 +3,50 @@ package com.example.spandana.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spandana.R
 import com.example.spandana.models.RecentActivity
+import java.text.SimpleDateFormat
+import java.util.*
 
-class RecentActivityAdapter : ListAdapter<RecentActivity, RecentActivityAdapter.ActivityViewHolder>(ActivityDiffCallback()) {
+class RecentActivityAdapter : ListAdapter<RecentActivity, RecentActivityAdapter.ViewHolder>(DIFF_CALLBACK) {
 
-    inner class ActivityViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val tvActivityIcon: android.widget.TextView = itemView.findViewById(R.id.tvActivityIcon)
-        private val tvActivityTitle: android.widget.TextView = itemView.findViewById(R.id.tvActivityTitle)
-        private val tvActivityDescription: android.widget.TextView = itemView.findViewById(R.id.tvActivityDescription)
-        private val tvActivityTime: android.widget.TextView = itemView.findViewById(R.id.tvActivityTime)
-        
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_recent_activity, parent, false)
+        return ViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val activity = getItem(position)
+        holder.bind(activity)
+    }
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val tvTitle: TextView = view.findViewById(R.id.tvActivityTitle)
+        private val tvDescription: TextView = view.findViewById(R.id.tvActivityDescription)
+        private val tvTime: TextView = view.findViewById(R.id.tvActivityTime)
+        private val sdf = SimpleDateFormat("hh:mm a", Locale.getDefault())
+
         fun bind(activity: RecentActivity) {
-            tvActivityIcon.text = activity.icon
-            tvActivityTitle.text = activity.title
-            tvActivityDescription.text = activity.description
-            tvActivityTime.text = activity.time
+            tvTitle.text = activity.title
+            tvDescription.text = activity.description
+            tvTime.text = sdf.format(Date(activity.timestamp))
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActivityViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_recent_activity, parent, false)
-        return ActivityViewHolder(view)
-    }
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RecentActivity>() {
+            override fun areItemsTheSame(oldItem: RecentActivity, newItem: RecentActivity): Boolean {
+                return oldItem.timestamp == newItem.timestamp && oldItem.title == newItem.title
+            }
 
-    override fun onBindViewHolder(holder: ActivityViewHolder, position: Int) {
-        holder.bind(getItem(position))
-    }
-
-    fun updateActivities(newActivities: List<RecentActivity>) {
-        submitList(newActivities)
-    }
-}
-
-class ActivityDiffCallback : DiffUtil.ItemCallback<RecentActivity>() {
-    override fun areItemsTheSame(oldItem: RecentActivity, newItem: RecentActivity): Boolean {
-        return oldItem.title == newItem.title && oldItem.time == newItem.time
-    }
-
-    override fun areContentsTheSame(oldItem: RecentActivity, newItem: RecentActivity): Boolean {
-        return oldItem == newItem
+            override fun areContentsTheSame(oldItem: RecentActivity, newItem: RecentActivity): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }
