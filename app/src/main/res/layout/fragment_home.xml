@@ -5,21 +5,21 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <!-- App Bar with Gradient -->
+    <!-- App Bar -->
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/gradient_header"
+        android:background="@color/background"
         android:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/transparent"
+            android:background="@color/background"
             app:title="Welcome back! 👋"
-            app:titleTextColor="@color/white"
-            app:menu="@menu/toolbar_menu" />
+            app:titleTextColor="@color/text_primary" />
+<!--            app:menu="@menu/toolbar_menu" />-->
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -34,16 +34,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="16dp">
 
-            <!-- User Profile Card -->
+            <!-- Welcome Card -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="@color/card_background"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/accent_green"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -54,10 +54,10 @@
 
                     <!-- Profile Avatar -->
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        app:cardCornerRadius="30dp"
-                        app:cardElevation="4dp"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        app:cardCornerRadius="28dp"
+                        app:cardElevation="0dp"
                         android:layout_marginEnd="16dp">
 
                         <ImageView
@@ -80,9 +80,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Vishwa"
-                            android:textSize="20sp"
+                            android:textSize="24sp"
                             android:textStyle="bold"
-                            android:textColor="@color/text_primary" />
+                            android:textColor="@color/white" />
 
                         <TextView
                             android:id="@+id/tvUserStreak"
@@ -90,33 +90,9 @@
                             android:layout_height="wrap_content"
                             android:text="🔥 7 day streak"
                             android:textSize="14sp"
-                            android:textColor="@color/accent_green"
+                            android:textColor="@color/white"
+                            android:alpha="0.9"
                             android:layout_marginTop="4dp" />
-
-                    </LinearLayout>
-
-                    <!-- Quick Stats -->
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <TextView
-                            android:id="@+id/tvTodayScore"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="85%"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/accent_green" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Today"
-                            android:textSize="12sp"
-                            android:textColor="@color/text_secondary" />
 
                     </LinearLayout>
 
@@ -124,7 +100,156 @@
 
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Quick Actions Grid -->
+            <!-- Today's Progress Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/card_background"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Today's Progress"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_primary"
+                        android:layout_marginBottom="16dp" />
+
+                    <!-- Progress Stats -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <!-- Habits Progress -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="📝"
+                                android:textSize="24sp"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:id="@+id/tvHabitsProgress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="3/5"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/accent_green" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tasks"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <!-- Divider -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/light_secondary_background"
+                            android:layout_marginHorizontal="16dp" />
+
+                        <!-- Water Progress -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="💧"
+                                android:textSize="24sp"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:id="@+id/tvWaterProgress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1.2L"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/category_teal" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Water"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <!-- Divider -->
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/light_secondary_background"
+                            android:layout_marginHorizontal="16dp" />
+
+                        <!-- Mood -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="😊"
+                                android:textSize="24sp"
+                                android:layout_marginBottom="8dp" />
+
+                            <TextView
+                                android:id="@+id/tvMoodStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Good"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/mood_happy" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mood"
+                                android:textSize="14sp"
+                                android:textColor="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Quick Actions -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -132,24 +257,25 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="12dp" />
 
+            <!-- Quick Actions Grid -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="16dp">
 
-                <!-- Log Water -->
+                <!-- Meditation -->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardLogWater"
+                    android:id="@+id/cardMeditation"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:layout_marginEnd="8dp"
                     app:cardBackgroundColor="@color/category_teal"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="6dp"
+                    app:cardElevation="4dp"
                     android:clickable="true"
                     android:focusable="true">
 
@@ -160,35 +286,74 @@
                         android:gravity="center"
                         android:padding="16dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="💧"
-                            android:textSize="32sp"
-                            android:layout_marginBottom="8dp" />
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_meditation"
+                            android:layout_marginBottom="8dp"
+                            app:tint="@color/white" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Log Water"
+                            android:text="Meditate"
                             android:textColor="@color/white"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Log Mood -->
+                <!-- Exercise -->
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardLogMood"
+                    android:id="@+id/cardExercise"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="4dp"
+                    app:cardBackgroundColor="@color/category_orange"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_exercise"
+                            android:layout_marginBottom="8dp"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Exercise"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Sleep -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardSleep"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
-                    app:cardBackgroundColor="@color/category_pink"
+                    app:cardBackgroundColor="@color/category_purple"
                     app:cardCornerRadius="16dp"
-                    app:cardElevation="6dp"
+                    app:cardElevation="4dp"
                     android:clickable="true"
                     android:focusable="true">
 
@@ -199,19 +364,19 @@
                         android:gravity="center"
                         android:padding="16dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="😊"
-                            android:textSize="32sp"
-                            android:layout_marginBottom="8dp" />
+                        <ImageView
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:src="@drawable/ic_sleep"
+                            android:layout_marginBottom="8dp"
+                            app:tint="@color/white" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Log Mood"
+                            android:text="Sleep"
                             android:textColor="@color/white"
-                            android:textSize="12sp"
+                            android:textSize="14sp"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -220,137 +385,12 @@
 
             </LinearLayout>
 
-            <!-- Today's Progress -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Today's Progress"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/text_primary"
-                android:layout_marginBottom="16dp" />
-
-            <!-- Progress Cards Row -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="24dp">
-
-                <!-- Habits Progress -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
-                    app:cardBackgroundColor="@color/card_background"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="📝"
-                            android:textSize="24sp"
-                            android:layout_marginBottom="8dp" />
-
-                        <TextView
-                            android:id="@+id/tvHabitsProgress"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="3/5"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/accent_green" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Habits"
-                            android:textSize="12sp"
-                            android:textColor="@color/text_secondary" />
-
-                        <ProgressBar
-                            android:id="@+id/progressHabits"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_marginTop="8dp"
-                            android:progress="60"
-                            android:progressTint="@color/accent_green" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Water Progress -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"
-                    app:cardBackgroundColor="@color/card_background"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="4dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="💧"
-                            android:textSize="24sp"
-                            android:layout_marginBottom="8dp" />
-
-                        <TextView
-                            android:id="@+id/tvWaterProgress"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1.2L"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:textColor="@color/category_teal" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Water"
-                            android:textSize="12sp"
-                            android:textColor="@color/text_secondary" />
-
-                        <ProgressBar
-                            android:id="@+id/progressWater"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="4dp"
-                            android:layout_marginTop="8dp"
-                            android:progress="75"
-                            android:progressTint="@color/category_teal" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-
-            <!-- Motivational Quote -->
+            <!-- Daily Quote -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="@color/accent_green"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/card_background"
                 app:cardCornerRadius="16dp"
                 app:cardElevation="4dp">
 
@@ -364,8 +404,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="💪"
-                        android:textSize="32sp"
+                        android:text="✨"
+                        android:textSize="24sp"
                         android:layout_marginBottom="12dp" />
 
                     <TextView
@@ -375,7 +415,7 @@
                         android:text="Every small step counts towards your wellness journey!"
                         android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="@color/white"
+                        android:textColor="@color/text_primary"
                         android:gravity="center"
                         android:lineSpacingExtra="4dp" />
 
@@ -391,7 +431,7 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/text_primary"
-                android:layout_marginBottom="16dp" />
+                android:layout_marginBottom="12dp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewRecentActivity"

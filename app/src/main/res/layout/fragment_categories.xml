@@ -19,8 +19,7 @@
             android:background="@color/background"
             app:title="Categories"
             app:titleTextColor="@color/text_primary"
-            app:navigationIcon="@drawable/ic_theme"
-            app:navigationIconTint="@color/accent_green" />
+            app:menu="@menu/toolbar_menu" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -73,290 +72,250 @@
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Categories Grid -->
-            <LinearLayout
+            <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:columnCount="2"
+                android:rowCount="3"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false"
+                android:useDefaultMargins="true">
 
-                <!-- Row 1 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="12dp">
+                <!-- Habits Category -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_habits"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/category_blue"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                    <!-- Habits Category -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_habits"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="6dp"
-                        app:cardBackgroundColor="@color/category_blue"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp"
-                        android:clickable="true"
-                        android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:padding="16dp">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_habits"
+                            android:layout_marginBottom="8dp"
+                            app:tint="@color/white" />
 
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/ic_habits"
-                                android:layout_marginBottom="8dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Habits"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Habits"
-                                android:textColor="@color/text_primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                    </LinearLayout>
 
-                        </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    </com.google.android.material.card.MaterialCardView>
+                <!-- Sleep Category -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_sleep"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/category_purple"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                    <!-- Sleep Category -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_sleep"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="6dp"
-                        app:cardBackgroundColor="@color/category_purple"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp"
-                        android:clickable="true"
-                        android:focusable="true">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:padding="16dp">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_sleep"
+                            android:layout_marginBottom="8dp"
+                            app:tint="@color/white" />
 
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/ic_sleep"
-                                android:layout_marginBottom="8dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Sleep"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Sleep"
-                                android:textColor="@color/text_primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                    </LinearLayout>
 
-                        </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
-                    </com.google.android.material.card.MaterialCardView>
+                <!-- Mood Category -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_mood"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/category_pink"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
 
-                <!-- Row 2 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="12dp">
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_mood"
+                            android:layout_marginBottom="8dp"
+                            app:tint="@color/white" />
 
-                    <!-- Mindfulness Category -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_mindfulness"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="6dp"
-                        app:cardBackgroundColor="@color/category_orange"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp"
-                        android:clickable="true"
-                        android:focusable="true">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mood"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:padding="16dp">
+                    </LinearLayout>
 
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/ic_mindfulness"
-                                android:layout_marginBottom="8dp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mindfulness"
-                                android:textColor="@color/text_primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                <!-- Exercise Category -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_exercise"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/category_orange"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                        </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
 
-                    </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_exercise"
+                            android:layout_marginBottom="8dp"
+                            app:tint="@color/white" />
 
-                    <!-- Empty space for symmetry -->
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="6dp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Exercise"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                </LinearLayout>
+                    </LinearLayout>
 
-                <!-- Row 3 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="12dp">
+                </com.google.android.material.card.MaterialCardView>
 
-                    <!-- Hydration Category -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_hydration"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="6dp"
-                        app:cardBackgroundColor="@color/category_teal"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp"
-                        android:clickable="true"
-                        android:focusable="true">
+                <!-- Water Category -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_water"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/category_teal"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:padding="16dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
 
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/ic_water"
-                                android:layout_marginBottom="8dp" />
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_water"
+                            android:layout_marginBottom="8dp"
+                            app:tint="@color/white" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Hydration"
-                                android:textColor="@color/text_primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Water"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                        </LinearLayout>
+                    </LinearLayout>
 
-                    </com.google.android.material.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                    <!-- Health Tracking Category -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_health"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="6dp"
-                        app:cardBackgroundColor="@color/accent_green"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp"
-                        android:clickable="true"
-                        android:focusable="true">
+                <!-- Goals Category -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_goals"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@color/accent_green"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    android:clickable="true"
+                    android:focusable="true">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:padding="16dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:padding="16dp">
 
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/ic_heart"
-                                android:layout_marginBottom="8dp" />
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_goals"
+                            android:layout_marginBottom="8dp"
+                            app:tint="@color/white" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Health"
-                                android:textColor="@color/text_primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Goals"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
 
-                        </LinearLayout>
+                    </LinearLayout>
 
-                    </com.google.android.material.card.MaterialCardView>
+                </com.google.android.material.card.MaterialCardView>
 
-                </LinearLayout>
-
-                <!-- Row 4 -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="16dp">
-
-                    <!-- Mood Category -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_mood"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="6dp"
-                        app:cardBackgroundColor="@color/category_blue"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/ic_mood"
-                                android:layout_marginBottom="8dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Mood"
-                                android:textColor="@color/text_primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- Empty space for symmetry -->
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginStart="6dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+            </GridLayout>
 
         </LinearLayout>
 

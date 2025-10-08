@@ -35,9 +35,15 @@ class CategoriesFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        // Theme toggle
-        binding.toolbar.setNavigationOnClickListener {
-            themeManager.toggleTheme()
+        // Theme toggle using menu item instead of navigation icon
+        binding.toolbar.setOnMenuItemClickListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.action_dark_mode -> {
+                    themeManager.toggleTheme()
+                    true
+                }
+                else -> false
+            }
         }
 
         // Category cards click listeners
@@ -49,63 +55,48 @@ class CategoriesFragment : Fragment() {
             onCategoryClicked("Sleep")
         }
 
-        binding.cardMindfulness.setOnClickListener {
-            onCategoryClicked("Mindfulness")
-        }
-
         binding.cardMood.setOnClickListener {
             onCategoryClicked("Mood")
         }
 
-        binding.cardHydration.setOnClickListener {
-            onCategoryClicked("Hydration")
+        binding.cardExercise.setOnClickListener {
+            onCategoryClicked("Exercise")
         }
 
-        binding.cardHealth.setOnClickListener {
-            onCategoryClicked("Health")
+        binding.cardWater.setOnClickListener {
+            onCategoryClicked("Water")
         }
 
-        binding.cardMood.setOnClickListener {
-            onCategoryClicked("Mood")
+        binding.cardGoals.setOnClickListener {
+            onCategoryClicked("Goals")
         }
     }
 
     private fun onCategoryClicked(categoryName: String) {
-        // Category click කල විට කරන actions
         when(categoryName) {
             "Habits" -> {
-                // Navigate to Habits Activity
                 val intent = Intent(requireContext(), com.example.spandana.activities.HabitsActivity::class.java)
                 startActivity(intent)
             }
             "Sleep" -> {
-                // Sleep tracking fragment එකට navigate කිරීම
-            }
-            "Mindfulness" -> {
-                // Navigate to Meditation Activity
-                val intent = Intent(requireContext(), MeditationActivity::class.java)
-                startActivity(intent)
+                // Sleep tracking implementation
             }
             "Mood" -> {
-                // Navigate to Mood Journal Fragment
                 val fragment = MoodJournalFragment()
                 parentFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, fragment)
                     .addToBackStack(null)
                     .commit()
             }
-            "Hydration" -> {
-                // Navigate to Hydration Activity
+            "Exercise" -> {
+                // Exercise tracking implementation
+            }
+            "Water" -> {
                 val intent = Intent(requireContext(), com.example.spandana.activities.HydrationActivity::class.java)
                 startActivity(intent)
             }
-            "Mood" -> {
-                // Mood journal fragment එකට navigate කිරීම
-                val moodFragment = MoodJournalFragment()
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, moodFragment)
-                    .addToBackStack(null)
-                    .commit()
+            "Goals" -> {
+                // Goals tracking implementation
             }
         }
     }

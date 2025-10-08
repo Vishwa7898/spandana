@@ -4,23 +4,23 @@
         <!-- Primary colors -->
         <item name="colorPrimary">@color/accent_green</item>
         <item name="colorPrimaryVariant">@color/accent_green_dark</item>
-        <item name="colorOnPrimary">@color/text_primary</item>
-        
+        <item name="colorOnPrimary">@color/white</item>
+
         <!-- Secondary colors -->
-        <item name="colorSecondary">@color/accent_green</item>
-        <item name="colorSecondaryVariant">@color/accent_green_dark</item>
+        <item name="colorSecondary">@color/light_card_background</item>
+        <item name="colorSecondaryVariant">@color/light_secondary_background</item>
         <item name="colorOnSecondary">@color/text_primary</item>
         
         <!-- Background colors -->
-        <item name="android:colorBackground">@color/background</item>
-        <item name="colorSurface">@color/surface</item>
+        <item name="android:colorBackground">@color/light_background</item>
+        <item name="colorSurface">@color/light_surface</item>
         <item name="colorOnBackground">@color/text_primary</item>
         <item name="colorOnSurface">@color/text_primary</item>
         
         <!-- Error colors -->
         <item name="colorError">@color/error_red</item>
-        <item name="colorOnError">@color/text_primary</item>
-        
+        <item name="colorOnError">@color/white</item>
+
         <!-- Status bar -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -28,10 +28,37 @@
         <!-- Navigation bar -->
         <item name="android:navigationBarColor">@color/surface</item>
         <item name="android:windowLightNavigationBar">true</item>
+
+        <!-- Window background -->
+        <item name="android:windowBackground">@color/light_background</item>
     </style>
 
     <style name="Theme.Wellnessapp" parent="Base.Theme.Wellnessapp" />
     
+    <!-- Meditation specific styles -->
+    <style name="Widget.Wellnessapp.MeditationCard" parent="Widget.Material3.CardView.Elevated">
+        <item name="cardBackgroundColor">@color/light_card_background</item>
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="contentPadding">16dp</item>
+    </style>
+
+    <style name="Widget.Wellnessapp.MeditationButton" parent="Widget.Material3.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/accent_green</item>
+        <item name="cornerRadius">28dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">0.025</item>
+    </style>
+
+    <style name="Widget.Wellnessapp.MeditationTimer" parent="TextAppearance.Material3.HeadlineLarge">
+        <item name="android:textColor">@color/meditation_timer_text</item>
+        <item name="android:textSize">48sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
     <!-- Custom button styles -->
     <style name="Widget.Wellnessapp.Button" parent="Widget.Material3.Button">
         <item name="android:textColor">@color/text_primary</item>
@@ -47,17 +74,26 @@
     </style>
     
     <!-- Custom text styles -->
-    <style name="TextAppearance.Wellnessapp.Headline" parent="TextAppearance.Material3.HeadlineSmall">
+    <style name="TextAppearance.Wellnessapp.Headline" parent="TextAppearance.Material3.HeadlineMedium">
         <item name="android:textColor">@color/text_primary</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">24sp</item>
     </style>
     
-    <style name="TextAppearance.Wellnessapp.Body" parent="TextAppearance.Material3.BodyMedium">
+    <style name="TextAppearance.Wellnessapp.Body" parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:lineSpacingMultiplier">1.2</item>
     </style>
-    
-    <!-- Custom switch styles -->
-    <style name="Widget.Wellnessapp.Switch" parent="Widget.Material3.CompoundButton.Switch">
-        <item name="thumbTint">@drawable/switch_thumb_color</item>
-        <item name="trackTint">@drawable/switch_track_color</item>
+
+    <style name="TextAppearance.Wellnessapp.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">@color/text_tertiary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <!-- Progress indicators -->
+    <style name="Widget.Wellnessapp.ProgressIndicator" parent="Widget.Material3.CircularProgressIndicator">
+        <item name="indicatorColor">@color/accent_green</item>
+        <item name="trackColor">@color/progress_background_light</item>
+        <item name="trackThickness">4dp</item>
     </style>
 </resources>

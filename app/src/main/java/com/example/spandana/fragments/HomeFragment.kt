@@ -1,5 +1,7 @@
 package com.example.spandana.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,16 +27,16 @@ class HomeFragment : Fragment() {
     // UI Components
     private lateinit var tvUserName: TextView
     private lateinit var tvUserStreak: TextView
-    private lateinit var tvTodayScore: TextView
     private lateinit var tvHabitsProgress: TextView
     private lateinit var tvWaterProgress: TextView
+    private lateinit var tvMoodStatus: TextView
     private lateinit var tvMotivationalQuote: TextView
-    private lateinit var progressHabits: ProgressBar
-    private lateinit var progressWater: ProgressBar
     private lateinit var recyclerViewRecentActivity: RecyclerView
-    private lateinit var cardLogWater: MaterialCardView
-    private lateinit var cardLogMood: MaterialCardView
+    private lateinit var cardMeditation: MaterialCardView
+    private lateinit var cardExercise: MaterialCardView
+    private lateinit var cardSleep: MaterialCardView
     private lateinit var toolbar: MaterialToolbar
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,6 +49,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
+        sharedPreferences = requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         initializeViews(view)
         setupToolbar(view)
         setupClickListeners(view)
@@ -58,21 +61,18 @@ class HomeFragment : Fragment() {
         // TextView initialization
         tvUserName = view.findViewById(R.id.tvUserName)
         tvUserStreak = view.findViewById(R.id.tvUserStreak)
-        tvTodayScore = view.findViewById(R.id.tvTodayScore)
         tvHabitsProgress = view.findViewById(R.id.tvHabitsProgress)
         tvWaterProgress = view.findViewById(R.id.tvWaterProgress)
+        tvMoodStatus = view.findViewById(R.id.tvMoodStatus)
         tvMotivationalQuote = view.findViewById(R.id.tvMotivationalQuote)
-
-        // ProgressBar initialization
-        progressHabits = view.findViewById(R.id.progressHabits)
-        progressWater = view.findViewById(R.id.progressWater)
 
         // RecyclerView initialization
         recyclerViewRecentActivity = view.findViewById(R.id.recyclerViewRecentActivity)
 
         // CardView initialization
-        cardLogWater = view.findViewById(R.id.cardLogWater)
-        cardLogMood = view.findViewById(R.id.cardLogMood)
+        cardMeditation = view.findViewById(R.id.cardMeditation)
+        cardExercise = view.findViewById(R.id.cardExercise)
+        cardSleep = view.findViewById(R.id.cardSleep)
 
         // Toolbar initialization
         toolbar = view.findViewById(R.id.toolbar)
@@ -95,44 +95,42 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupClickListeners(view: View) {
-        // Log Water card click
-        cardLogWater.setOnClickListener {
-            showMessage("Log Water clicked")
-            // Navigate to water logging screen or show dialog
-            openWaterLogging()
+        // Meditation card click
+        cardMeditation.setOnClickListener {
+            showMessage("Meditation clicked")
+            // Navigate to meditation screen
         }
 
-        // Log Mood card click
-        cardLogMood.setOnClickListener {
-            showMessage("Log Mood clicked")
-            // Navigate to mood logging screen or show dialog
-            openMoodLogging()
+        // Exercise card click
+        cardExercise.setOnClickListener {
+            showMessage("Exercise clicked")
+            // Navigate to exercise screen
+        }
+
+        // Sleep card click
+        cardSleep.setOnClickListener {
+            showMessage("Sleep clicked")
+            // Navigate to sleep screen
         }
     }
 
     private fun loadUserData() {
-        // Load user data from shared preferences, database, or API
-        val userName = "Vishwa" // Replace with actual user name
+        // Get user name from SharedPreferences
+        val userName = sharedPreferences.getString("userName", "User") ?: "User"
         val streakDays = 7 // Replace with actual streak
-        val todayScore = 85 // Replace with actual score
         val habitsCompleted = 3
         val totalHabits = 5
         val waterConsumed = 1.2
-        val waterTarget = 2.0
 
         // Update UI with loaded data
         tvUserName.text = userName
         tvUserStreak.text = "🔥 $streakDays day streak"
-        tvTodayScore.text = "$todayScore%"
         tvHabitsProgress.text = "$habitsCompleted/$totalHabits"
         tvWaterProgress.text = "${waterConsumed}L"
+        tvMoodStatus.text = "Good"
 
-        // Calculate and set progress
-        val habitsProgress = (habitsCompleted.toFloat() / totalHabits) * 100
-        val waterProgress = (waterConsumed / waterTarget) * 100
-
-        progressHabits.progress = habitsProgress.toInt()
-        progressWater.progress = waterProgress.toInt()
+        // Set welcome message with user name
+        toolbar.title = "Welcome back, $userName! 👋"
 
         // Set motivational quote
         val motivationalQuotes = listOf(

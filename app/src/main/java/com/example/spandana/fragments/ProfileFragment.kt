@@ -1,10 +1,12 @@
 package com.example.spandana.fragments
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CompoundButton
 import androidx.fragment.app.Fragment
 import com.example.spandana.R
 import com.example.spandana.databinding.FragmentProfileBinding
@@ -44,14 +46,14 @@ class ProfileFragment : Fragment() {
 
         // Update stats
         updateStats()
-        binding.tvUserName.text = userName ?: "User"
-        binding.tvUserEmail.text = userEmail ?: ""
-        
+        binding.tvProfileName.text = userName ?: "User"
+        binding.tvProfileEmail.text = userEmail ?: ""
+
         // Show/hide email based on user type
         if (userType == "guest" || userEmail.isNullOrEmpty()) {
-            binding.tvUserEmail.visibility = android.view.View.GONE
+            binding.tvProfileEmail.visibility = View.GONE
         } else {
-            binding.tvUserEmail.visibility = android.view.View.VISIBLE
+            binding.tvProfileEmail.visibility = View.VISIBLE
         }
         
         // Set initial dark mode state
@@ -60,29 +62,20 @@ class ProfileFragment : Fragment() {
     }
 
     private fun updateStats() {
-        // Update stats values
-        binding.tvWorkoutsCount.text = "24"
-        binding.tvMinutesCount.text = "1,240"
-        binding.tvStreakCount.text = "7"
+        binding.statsWorkouts.text = "24" // Replace with actual stats
+        binding.statsMinutes.text = "1,240"
+        binding.statsStreak.text = "7"
     }
 
     private fun updateThemeIcon() {
-        val iconRes = if (themeManager.isDarkMode()) {
-            R.drawable.ic_moon
-        } else {
-            R.drawable.ic_sun
-        }
-        binding.ivThemeIcon.setImageResource(iconRes)
+        binding.themeIcon.setImageResource(
+            if (themeManager.isDarkMode()) R.drawable.ic_moon else R.drawable.ic_sun
+        )
     }
 
     private fun setupClickListeners() {
-        // Back button
-        binding.toolbar.setNavigationOnClickListener {
-            requireActivity().onBackPressed()
-        }
-
         // Dark mode switch
-        binding.switchDarkMode.setOnCheckedChangeListener { _, isChecked ->
+        binding.switchDarkMode.setOnCheckedChangeListener { _: CompoundButton, isChecked: Boolean ->
             if (isChecked != themeManager.isDarkMode()) {
                 themeManager.toggleTheme()
                 updateThemeIcon()
@@ -90,18 +83,18 @@ class ProfileFragment : Fragment() {
         }
 
         // Edit profile
-        binding.settingEditProfile.setOnClickListener {
+        binding.cardEditProfile.setOnClickListener {
             // Navigate to edit profile
         }
 
         // Help & Support
-        binding.settingHelp.setOnClickListener {
+        binding.cardHelp.setOnClickListener {
             // Navigate to help
         }
 
         // About
-        binding.settingAbout.setOnClickListener {
-            // Show about dialog
+        binding.cardAbout.setOnClickListener {
+            // Navigate to about
         }
 
         // Logout
