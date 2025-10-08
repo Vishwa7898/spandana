@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.spandana.adapters.MoodEntryAdapter
 import com.example.spandana.databinding.FragmentMoodJournalBinding
 import com.example.spandana.models.MoodEntry
-import com.example.spandana.utils.SharedPreferencesManager
+import com.example.spandana.models.MoodOptions
+import com.example.spandana.utils.MoodManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,8 +20,9 @@ class MoodJournalFragment : Fragment() {
     private var _binding: FragmentMoodJournalBinding? = null
     private val binding get() = _binding!!
     private lateinit var moodAdapter: MoodEntryAdapter
-    private lateinit var prefs: SharedPreferencesManager
+    private lateinit var moodManager: MoodManager
     private var selectedMood: String = "Neutral"
+    private var selectedEmoji: String = "😐"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,7 +36,7 @@ class MoodJournalFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        prefs = SharedPreferencesManager(requireContext())
+        moodManager = MoodManager.getInstance(requireContext())
         setupRecyclerView()
         loadMoodEntries()
         setupMoodSelection()
@@ -49,49 +52,44 @@ class MoodJournalFragment : Fragment() {
     }
 
     private fun loadMoodEntries() {
-        // Sample mood entries - real app එකේ SharedPreferences වලින් load කරන්න
-        val entries = listOf(
-            MoodEntry("Content", "10:00 AM", "Today"),
-            MoodEntry("Neutral", "2:00 PM", "Today"),
-            MoodEntry("Happy", "8:00 PM", "Today")
-        )
+        // Load mood entries from MoodManager
+        val entries = moodManager.getAllMoodEntries().sortedByDescending { it.timestamp }
         moodAdapter.submitList(entries)
     }
 
     private fun setupMoodSelection() {
         // Mood selection listeners setup කිරීම
         binding.happyMood.setOnClickListener {
-            selectMood("Happy")
-            selectedMood = "Happy"
+            selectMood("Happy", "😊")
         }
 
         binding.contentMood.setOnClickListener {
-            selectMood("Content")
-            selectedMood = "Content"
+            selectMood("Good", "😌")
         }
 
         binding.neutralMood.setOnClickListener {
-            selectMood("Neutral")
-            selectedMood = "Neutral"
+            selectMood("Neutral", "😐")
         }
 
         binding.sadMood.setOnClickListener {
-            selectMood("Sad")
-            selectedMood = "Sad"
+            selectMood("Sad", "😢")
         }
 
         binding.angryMood.setOnClickListener {
-            selectMood("Angry")
-            selectedMood = "Angry"
+            selectMood("Angry", "😠")
         }
 
         // Default selection
-        selectMood("Neutral")
+        selectMood("Neutral", "😐")
     }
 
-    private fun selectMood(mood: String) {
+    private fun selectMood(mood: String, emoji: String) {
         // සියලුම moods reset කිරීම
         resetAllMoods()
+
+        // Update selected mood and emoji
+        selectedMood = mood
+        selectedEmoji = emoji
 
         // Select the chosen mood
         when(mood) {
@@ -99,7 +97,7 @@ class MoodJournalFragment : Fragment() {
                 binding.happyMood.isSelected = true
                 binding.happyMood.alpha = 1.0f
             }
-            "Content" -> {
+            "Good" -> {
                 binding.contentMood.isSelected = true
                 binding.contentMood.alpha = 1.0f
             }
@@ -141,18 +139,36 @@ class MoodJournalFragment : Fragment() {
     }
 
     private fun saveMoodEntry() {
-        val timeFormat = SimpleDateFormat("hh:mm a", Locale.getDefault())
-        val dateFormat = SimpleDateFormat("MMM dd", Locale.getDefault())
-        val currentTime = timeFormat.format(Date())
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val currentDate = dateFormat.format(Date())
+        
+        // Create new mood entry
+        val newEntry = MoodEntry(
+            userId = getCurrentUserId(),
+            mood = selectedMood,
+            emoji = selectedEmoji,
+            notes = binding.moodNotes.text.toString(),
+            timestamp = System.currentTimeMillis(),
+            date = currentDate
+        )
 
-        val newEntry = MoodEntry(selectedMood, currentTime, currentDate)
+        // Save to MoodManager
+        moodManager.saveMoodEntry(newEntry)
 
-        // Save to SharedPreferences and update UI
-        // prefs.saveMoodEntry(newEntry)
+        // Show success message
+        Toast.makeText(requireContext(), "Mood saved successfully! 😊", Toast.LENGTH_SHORT).show()
 
-        // For now, just navigate back
-        parentFragmentManager.popBackStack()
+        // Reload entries and clear form
+        loadMoodEntries()
+        binding.moodNotes.text?.clear()
+        
+        // Reset to default mood
+        selectMood("Neutral", "😐")
+    }
+
+    private fun getCurrentUserId(): String {
+        val prefs = requireContext().getSharedPreferences("user_prefs", android.content.Context.MODE_PRIVATE)
+        return prefs.getString("user_uid", "guest") ?: "guest"
     }
 
     override fun onDestroyView() {

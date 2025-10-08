@@ -3,12 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/card_background"
     app:cardCornerRadius="12dp"
-    app:cardElevation="2dp"
-    android:backgroundTint="@color/white"
-    android:clickable="true"
-    android:focusable="true">
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,15 +15,18 @@
         android:padding="16dp"
         android:gravity="center_vertical">
 
-        <!-- Checkbox -->
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:buttonTint="@color/primary_color"
-            android:layout_marginEnd="16dp" />
+        <!-- Habit Icon -->
+        <TextView
+            android:id="@+id/tvHabitIcon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:text="📝"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:background="@drawable/circular_progress"
+            android:layout_marginEnd="12dp" />
 
-        <!-- Habit Details -->
+        <!-- Habit Info -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -33,31 +34,96 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/habitName"
-                android:layout_width="match_parent"
+                android:id="@+id/tvHabitName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Habit Name"
                 android:textSize="16sp"
-                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textColor="@color/text_primary"
                 android:layout_marginBottom="4dp" />
 
             <TextView
-                android:id="@+id/habitProgress"
-                android:layout_width="match_parent"
+                android:id="@+id/tvHabitDescription"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0/0 units"
-                android:textSize="14sp"
-                android:textColor="@color/text_gray"
+                android:text="Description"
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary"
                 android:layout_marginBottom="8dp" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/progressBar"
+            <!-- Progress Bar -->
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
-                android:progress="0"
-                app:trackColor="@color/progress_track"
-                app:trackCornerRadius="2dp"
-                app:indicatorColor="@color/primary_color" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ProgressBar
+                    android:id="@+id/progressBarHabit"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="6dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:progressDrawable="@drawable/circular_progress" />
+
+                <TextView
+                    android:id="@+id/tvProgressText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/1"
+                    android:textSize="12sp"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="12dp">
+
+            <!-- Complete Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnComplete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✓"
+                android:textSize="16sp"
+                android:backgroundTint="@color/accent_green"
+                app:cornerRadius="20dp"
+                android:layout_marginEnd="8dp"
+                android:minWidth="40dp"
+                android:minHeight="40dp" />
+
+            <!-- Edit Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✏️"
+                android:textSize="16sp"
+                android:backgroundTint="@color/category_blue"
+                app:cornerRadius="20dp"
+                android:layout_marginEnd="8dp"
+                android:minWidth="40dp"
+                android:minHeight="40dp" />
+
+            <!-- Delete Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🗑️"
+                android:textSize="16sp"
+                android:backgroundTint="@color/error_red"
+                app:cornerRadius="20dp"
+                android:minWidth="40dp"
+                android:minHeight="40dp" />
 
         </LinearLayout>
 

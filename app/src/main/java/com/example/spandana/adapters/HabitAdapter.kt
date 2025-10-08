@@ -7,9 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.spandana.databinding.ItemHabitBinding
 import com.example.spandana.models.Habit
+import com.example.spandana.models.HabitProgress
+import com.example.spandana.utils.HabitManager
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HabitAdapter(
-    private val onHabitClick: (Habit, Boolean) -> Unit
+    private val onHabitClick: (Habit, Boolean) -> Unit,
+    private val habitManager: HabitManager
 ) : ListAdapter<Habit, HabitAdapter.HabitViewHolder>(HabitDiffCallback()) {
 
     // ViewHolder class එක correctly define කරන්න
@@ -18,18 +23,28 @@ class HabitAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(habit: Habit) {
-            binding.habitName.text = habit.name
-            binding.habitProgress.text = "${habit.current}/${habit.target} ${habit.unit}"
-            binding.progressBar.progress = habit.calculatePercentage()
-
-            binding.checkbox.isChecked = habit.isCompleted()
-
-            binding.checkbox.setOnCheckedChangeListener { _, isChecked ->
-                onHabitClick(habit, isChecked)
+            binding.tvHabitName.text = habit.name
+            binding.tvHabitDescription.text = habit.description
+            
+            // Get today's progress
+            val today = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
+            val progress = habitManager.getHabitProgressForDate(habit.id, today)
+            
+            binding.progressBarHabit.progress = progress.completionPercentage
+            binding.tvProgressText.text = progress.getProgressText()
+            
+            // Update complete button state
+            if (progress.isCompleted) {
+                binding.btnComplete.text = "✓"
+                binding.btnComplete.isEnabled = false
+            } else {
+                binding.btnComplete.text = "✓"
+                binding.btnComplete.isEnabled = true
             }
-
-            binding.root.setOnClickListener {
-                binding.checkbox.isChecked = !binding.checkbox.isChecked
+            
+            // Set click listeners
+            binding.btnComplete.setOnClickListener {
+                onHabitClick(habit, true)
             }
         }
     }
@@ -52,7 +67,7 @@ class HabitAdapter(
 // DiffUtil callback class එක ස්වාධීනව create කරන්න
 class HabitDiffCallback : DiffUtil.ItemCallback<Habit>() {
     override fun areItemsTheSame(oldItem: Habit, newItem: Habit): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: Habit, newItem: Habit): Boolean {

@@ -85,9 +85,9 @@
                     android:orientation="horizontal"
                     android:layout_marginBottom="12dp">
 
-                    <!-- Exercise Category -->
+                    <!-- Habits Category -->
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_exercise"
+                        android:id="@+id/card_habits"
                         android:layout_width="0dp"
                         android:layout_height="120dp"
                         android:layout_weight="1"
@@ -114,7 +114,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Exercise"
+                                android:text="Habits"
                                 android:textColor="@color/text_primary"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -170,51 +170,13 @@
                     android:orientation="horizontal"
                     android:layout_marginBottom="12dp">
 
-                    <!-- Nutrition Category -->
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_nutrition"
-                        android:layout_width="0dp"
-                        android:layout_height="120dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="6dp"
-                        app:cardBackgroundColor="@color/category_pink"
-                        app:cardCornerRadius="16dp"
-                        app:cardElevation="4dp"
-                        android:clickable="true"
-                        android:focusable="true">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:gravity="center"
-                            android:padding="16dp">
-
-                            <ImageView
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:src="@drawable/ic_water"
-                                android:layout_marginBottom="8dp" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Nutrition"
-                                android:textColor="@color/text_primary"
-                                android:textSize="14sp"
-                                android:textStyle="bold" />
-
-                        </LinearLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
                     <!-- Mindfulness Category -->
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_mindfulness"
                         android:layout_width="0dp"
                         android:layout_height="120dp"
                         android:layout_weight="1"
-                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
                         app:cardBackgroundColor="@color/category_orange"
                         app:cardCornerRadius="16dp"
                         app:cardElevation="4dp"
@@ -245,6 +207,13 @@
                         </LinearLayout>
 
                     </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Empty space for symmetry -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp" />
 
                 </LinearLayout>
 

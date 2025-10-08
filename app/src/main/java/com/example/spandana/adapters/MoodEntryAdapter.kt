@@ -15,8 +15,9 @@ class MoodEntryAdapter : ListAdapter<MoodEntry, MoodEntryAdapter.MoodEntryViewHo
 
         fun bind(moodEntry: MoodEntry) {
             binding.moodType.text = moodEntry.mood
-            binding.moodTime.text = moodEntry.time
-            binding.moodDate.text = moodEntry.date
+            binding.moodTime.text = moodEntry.getFormattedTime()
+            binding.moodDate.text = moodEntry.getFormattedDate()
+            binding.moodIcon.text = moodEntry.emoji
         }
     }
 
@@ -36,7 +37,7 @@ class MoodEntryAdapter : ListAdapter<MoodEntry, MoodEntryAdapter.MoodEntryViewHo
 
 class MoodEntryDiffCallback : DiffUtil.ItemCallback<MoodEntry>() {
     override fun areItemsTheSame(oldItem: MoodEntry, newItem: MoodEntry): Boolean {
-        return oldItem.time == newItem.time && oldItem.date == newItem.date
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: MoodEntry, newItem: MoodEntry): Boolean {
