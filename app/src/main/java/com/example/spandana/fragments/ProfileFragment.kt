@@ -42,7 +42,8 @@ class ProfileFragment : Fragment() {
         val userType = prefs.getString("user_type", "guest")
         val isLoggedIn = prefs.getBoolean("is_logged_in", false)
 
-        // Update profile information
+        // Update stats
+        updateStats()
         binding.tvUserName.text = userName ?: "User"
         binding.tvUserEmail.text = userEmail ?: ""
         

@@ -56,6 +56,10 @@ class CategoriesFragment : Fragment() {
             onCategoryClicked("Mindfulness")
         }
 
+        binding.cardHydration.setOnClickListener {
+            onCategoryClicked("Hydration")
+        }
+
         binding.cardHealth.setOnClickListener {
             onCategoryClicked("Health")
         }
@@ -83,8 +87,10 @@ class CategoriesFragment : Fragment() {
                 val intent = Intent(requireContext(), MeditationActivity::class.java)
                 startActivity(intent)
             }
-            "Health" -> {
-                // Health tracking fragment එකට navigate කිරීම
+            "Hydration" -> {
+                // Navigate to Hydration Activity
+                val intent = Intent(requireContext(), com.example.spandana.activities.HydrationActivity::class.java)
+                startActivity(intent)
             }
             "Mood" -> {
                 // Mood journal fragment එකට navigate කිරීම

@@ -33,9 +33,20 @@
             android:exported="false"
             android:theme="@style/Theme.Wellnessapp" />
         <activity
+            android:name=".activities.HydrationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Wellnessapp" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:theme="@style/Theme.Wellnessapp" />
+        
+        <!-- Hydration Reminder Service -->
+        <service
+            android:name=".services.HydrationReminderService"
+            android:enabled="true"
+            android:exported="false" />
+
     </application>
 
 </manifest>

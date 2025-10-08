@@ -54,6 +54,7 @@
     <color name="category_purple">#5856D6</color>
     <color name="category_pink">#FF2D55</color>
     <color name="category_orange">#FF9500</color>
+    <color name="category_teal">#00C7BE</color>
     
     <!-- Transparent overlays -->
     <color name="overlay_dark">#80000000</color>
