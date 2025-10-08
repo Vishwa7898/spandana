@@ -2,6 +2,7 @@ package com.example.spandana.fragments
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.spandana.R
 import com.example.spandana.databinding.FragmentProfileBinding
 import com.example.spandana.utils.ThemeManager
+import java.io.File
 
 class ProfileFragment : Fragment() {
 
@@ -42,12 +44,20 @@ class ProfileFragment : Fragment() {
         val userName = prefs.getString("user_name", "User")
         val userEmail = prefs.getString("user_email", "")
         val userType = prefs.getString("user_type", "guest")
-        val isLoggedIn = prefs.getBoolean("is_logged_in", false)
+        val profilePicPath = prefs.getString("profile_pic_path", null)
 
         // Update stats
         updateStats()
         binding.tvProfileName.text = userName ?: "User"
         binding.tvProfileEmail.text = userEmail ?: ""
+
+        // Load profile picture if exists
+        profilePicPath?.let { path ->
+            val file = File(path)
+            if (file.exists()) {
+                binding.ivProfileImage.setImageURI(Uri.fromFile(file))
+            }
+        }
 
         // Show/hide email based on user type
         if (userType == "guest" || userEmail.isNullOrEmpty()) {
@@ -84,7 +94,11 @@ class ProfileFragment : Fragment() {
 
         // Edit profile
         binding.cardEditProfile.setOnClickListener {
-            // Navigate to edit profile
+            val editProfileFragment = EditProfileFragment()
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, editProfileFragment)
+                .addToBackStack(null)
+                .commit()
         }
 
         // Help & Support
