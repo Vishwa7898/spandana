@@ -50,6 +50,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         
         sharedPreferences = requireContext().getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+        themeManager = ThemeManager.getInstance(requireContext())
         setupClickListeners()
         setupRecyclerView()
         updateProgress()
